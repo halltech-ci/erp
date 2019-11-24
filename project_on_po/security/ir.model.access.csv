@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_project_on_po_project_on_po,project_on_po.project_on_po,model_project_on_po_project_on_po,,1,0,0,0
