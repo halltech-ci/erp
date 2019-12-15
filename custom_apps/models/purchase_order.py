@@ -18,9 +18,12 @@ class PurchaseOrder(models.Model):
     _inherit = "purchase.order"
     
     proforma_invoice = fields.Char(string="N° Devis/Proforma", store=True)
+    total_amount_letter = fields.Text(string="Montant total en lettre:")
+    project_id = fields.Many2one("project.project", "Project", ondelete="set null")
     
 
 class PurchaseOrderLine(models.Model):
     _inherit = "purchase.order.line"
     
     item = fields.Integer(string="Item", store=False)
+    date_planned = fields.Datetime(string='Scheduled Date', required=False, index=True)

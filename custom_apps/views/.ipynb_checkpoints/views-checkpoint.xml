@@ -61,19 +61,36 @@
       <field name="model">purchase.order</field>
       <field name="inherit_id" ref="purchase.purchase_order_form"/>
       <field name="arch" type="xml">
-          <xpath expr="//sheet/group/group/field[@name='company_id']" 
-                 position="after">
-              <field name="proforma_invoice"/>         
+          <!-- Insert proforma_invoice in purchase order form-->
+          <xpath expr="//sheet/group/group/field[@name='partner_ref']" 
+                 position="replace">
+              <field name="proforma_invoice"/>        
           </xpath>
+          <!-- Insert Item in purchase order form-->
           <xpath expr="//field[@name='order_line']/tree/field[@name='product_id']" 
                  position="before">
               <field name="item"/>       
           </xpath>
+          <!-- Delete field company_id -->
           <xpath expr="//field[@name='order_line']/tree/field[@name='company_id']" 
                  position="replace">       
           </xpath>
+          <!-- Delete field date_planned -->
           <xpath expr="//field[@name='order_line']/tree/field[@name='date_planned']" 
-                 position="replace">       
+                 position="replace">
+              <field name="date_planned"/>
+          </xpath>
+          <!-- Added project_id in purchase order -->
+          <xpath expr="//sheet/group/group/field[@name='company_id']" 
+                 position="after">
+              <field name="project_id"/>      
+          </xpath>
+          <!-- Added total amount in letter -->
+          <xpath expr="//sheet/notebook/page/field[@name='notes']" 
+                 position="before">
+              <group >
+                  <field name="total_amount_letter" class="oe_inline"/>
+              </group>      
           </xpath>
           
       </field>

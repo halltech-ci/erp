@@ -15,6 +15,9 @@ from odoo import models, fields, api
 #         self.value2 = float(self.value) / 100
 
 class PurchaseOrder(models.Model):
-    _inherit = "purchase.order"
+    _inherit = "project.project"
     
-    item = fields.Char(string="Item", store=False)
+    purchase_order_ids = fields.One2many("purchase.order", 
+                                         "project_id", 
+                                         string="Purchase Order"
+    )
