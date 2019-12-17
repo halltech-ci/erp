@@ -3,3 +3,5 @@
 #from . import models
 from . import purchase_order
 from . import project
+from . import product
+#from . import product_template

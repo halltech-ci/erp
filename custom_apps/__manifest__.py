@@ -31,6 +31,7 @@
         'views/views.xml',
         'views/templates.xml',
         'views/project_views.xml',
+        'views/product_template_views.xml',
     ],
     # only loaded in demonstration mode
     'demo': [
