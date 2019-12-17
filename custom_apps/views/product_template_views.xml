@@ -56,47 +56,21 @@
     <menuitem name="Server to list" id="custom_apps" parent="custom_apps.menu_2"
               action="custom_apps.action_server"/>
     -->
-    <record model="ir.ui.view" id="purchase_order_form_inherit">
+    <record id="inherit_product_template_only_form_view" model="ir.ui.view">
       <!--<field name="name">inherit purchase order form</field>-->
-      <field name="model">purchase.order</field>
-      <field name="inherit_id" ref="purchase.purchase_order_form"/>
+      <field name="model">product.template</field>
+      <field name="inherit_id" ref="product.product_template_only_form_view"/>
       <field name="arch" type="xml">
-          <!-- Insert proforma_invoice in purchase order form-->
-          <xpath expr="//sheet/group/group/field[@name='partner_ref']" 
+          <!-- Insert purchase order page on project-->
+          <xpath expr="//field[@name='barcode']" 
                  position="replace">
-              <field name="proforma_invoice"/>        
+                <field name="description" attrs="{'invisible': [('product_variant_count', '>', 1)]}"/>
           </xpath>
-          <!-- Insert Item in purchase order form-->
-          <xpath expr="//field[@name='order_line']/tree/field[@name='product_id']" 
-                 position="before">
-              <field name="item"/>       
-          </xpath>
-          <xpath expr="//field[@name='order_line']/tree/field[@name='product_id']" 
-                 position="after">
-              <field name="product_code"/>      
-          </xpath>
-          <!-- Delete field company_id -->
-          <xpath expr="//field[@name='order_line']/tree/field[@name='company_id']" 
-                 position="replace">       
-          </xpath>
-          <!-- Delete field date_planned -->
-          <xpath expr="//field[@name='order_line']/tree/field[@name='date_planned']" 
+          <!-- Make default_code mandatory -->
+          <xpath expr="//field[@name='default_code']"
                  position="replace">
-              <field name="date_planned" invisible='1'/>
+                <field name="default_code" required='True' attrs="{'invisible': [('product_variant_count', '>', 1)]}"/>
           </xpath>
-          <!-- Added project_id in purchase order -->
-          <xpath expr="//sheet/group/group/field[@name='company_id']" 
-                 position="after">
-              <field name="project_id"/>      
-          </xpath>
-          <!-- Added total amount in letter -->
-          <xpath expr="//sheet/notebook/page/field[@name='notes']" 
-                 position="before">
-              <group >
-                  <field name="total_amount_letter" class="oe_inline"/>
-              </group>      
-          </xpath>
-          
       </field>
     </record>
   </data>
