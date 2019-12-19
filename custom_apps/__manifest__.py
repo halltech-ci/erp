@@ -22,7 +22,7 @@
     # any module necessary for this one to work correctly
     'depends': ['base',
                'purchase',
-                'project'
+                'project',
                ],
 
     # always loaded
@@ -32,6 +32,7 @@
         'views/templates.xml',
         'views/project_views.xml',
         'views/product_template_views.xml',
+        'views/purchase_order_report.xml'
     ],
     # only loaded in demonstration mode
     'demo': [
