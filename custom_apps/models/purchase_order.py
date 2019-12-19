@@ -36,7 +36,7 @@ class PurchaseOrder(models.Model):
 class PurchaseOrderLine(models.Model):
     _inherit = "purchase.order.line"
     
-    item = fields.Integer(string="Item", store=False)
+    item = fields.Integer(string="Item", store=True)
     date_planned = fields.Datetime(string='Scheduled Date', required=False, index=True)
     product_code = fields.Char(string = "Product Code", 
                                related="product_id.default_code")
