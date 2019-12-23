@@ -8,7 +8,7 @@
                 </strong>
             </div>
         </xpath>
-        <xpath expr="//div[@class='page']/div[@class='row mt32 mb32']" position="after">
+        <xpath expr="//div[hasclass('page')]/div[hasclass('row', 'mt32', 'mb32')]" position="after">
             <div>
               <strong>Objet:</strong>
                  <span t-field="doc.purchase_order_subject"/>
