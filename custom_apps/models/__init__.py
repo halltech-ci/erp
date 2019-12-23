@@ -4,5 +4,4 @@
 from . import purchase_order
 from . import project
 from . import product
-#from . import pruchase_request
-#from . import product_template
+from . import sale
