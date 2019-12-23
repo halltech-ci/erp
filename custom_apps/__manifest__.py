@@ -23,6 +23,7 @@
     'depends': ['base',
                'purchase',
                 'project',
+                'sale'
                ],
 
     # always loaded
@@ -32,7 +33,9 @@
         'views/templates.xml',
         'views/project_views.xml',
         'views/product_template_views.xml',
-        'views/purchase_order_report.xml'
+        'views/purchase_order_report.xml',
+        'views/sale_views.xml',
+        'views/sale_order_report.xml',
     ],
     # only loaded in demonstration mode
     'demo': [
