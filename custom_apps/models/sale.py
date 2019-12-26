@@ -19,7 +19,9 @@ class SaleOrder(models.Model):
     
     project_id = fields.Many2one("project.project", "Project", ondelete= "set null")
     purchase_order_subject = fields.Text("Objet : ")
-    signed_user = fields.Many2one("res.users", string="Signed In User", readonly=True, default= lambda self: self.env.uid)
+    signed_user = fields.Many2one("res.users", string="Emetteur : ", readonly=True, default= lambda self: self.env.uid)
+    amount_letter = fields.Text('Montant en lettre')
+    sale_order_recipient = fields.Char("Destinataire")
     '''
     @api.multi
     def get_signed_user(self):
