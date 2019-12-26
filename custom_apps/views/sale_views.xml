@@ -67,12 +67,23 @@
                   <field name="purchase_order_subject"/>
               </group>
           </xpath>
+          <!--
+          <xpath expr="//sheet/group/group/field[@name='payment_term_id']" position='replace'>
+              <field name="sale_order_recipient"/>
+          </xpath>
+          -->
           <xpath expr="//sheet/group/group" position="inside">
             <field name="project_id"/>
           </xpath>
           <xpath expr="//sheet/group/group/field[@name='payment_term_id']" position="after">
-            <field name="signed_user"/>
+            <field name="sale_order_recipient"/>
           </xpath>
+          <xpath expr="//sheet/notebook/page/field[@name='note']" position="before">
+            <group>
+                <field name="amount_letter" class="oe_inline"/>
+            </group>
+          </xpath>
+          
       </field>
     </record>
   </data>
