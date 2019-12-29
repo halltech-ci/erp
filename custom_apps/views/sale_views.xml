@@ -83,6 +83,12 @@
                 <field name="amount_letter" class="oe_inline"/>
             </group>
           </xpath>
+          <!-- Add product unit of mesure in sale order form view-->
+          <xpath expr="//sheet/notebook/page/field[@name='order_line']/form/group/group/field[@name='price_unit']" position="before">            <field name="product_uom" string='Unite'/> 
+          </xpath>
+          <xpath expr="//sheet/notebook/page/field[@name='order_line']/tree/field[@name='price_unit']" position="before">            
+              <field name="product_uom" string='Unite'/> 
+          </xpath>
           
       </field>
     </record>

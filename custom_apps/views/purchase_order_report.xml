@@ -10,7 +10,7 @@
         </xpath>
         <xpath expr="//table[hasclass('table', 'table-condensed')]//thead/tr" position="replace">
             <tr>
-                <th class="text*left"><strong>Item</strong></th>
+                <th class="text-left"><strong>Item</strong></th>
                 <th class="text-left"><strong>Description</strong></th>
                 <th class="text-center"><strong>Unit</strong></th>
                 <th class="text-center"><strong>Qty</strong></th>
