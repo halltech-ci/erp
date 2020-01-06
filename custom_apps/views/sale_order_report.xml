@@ -1,18 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <template id="inherit_report_saleorder_document" inherit_id="sale.report_saleorder_document">
-        <xpath expr="//p[@t-if='doc.fiscal_position_id and doc.fiscal_position_id.note']" position="after">
-            <div class="row text-right">
+        <!-- Add unit column in sale order report
+        <xpath expr="//div[hassclass('page')]/table[hasclass('table', 'table-condensed')]"
+        -->
+        <!-- Ajout de champ montant en lettre dans devis-->
+        <xpath expr="//p[@t-if='doc.payment_term_id.note']" position="before"> 
+           <div class='row text-left'>
+              <strong>Montant en Lettre:</strong>
+                <span t-field='doc.amount_letter'/>
+            </div>  
+        </xpath>
+        <!-- Ajout de signature emetteur en bas de page dans devis-->
+        <xpath expr="//p[@t-if='doc.payment_term_id.note']" position="after">
+            <div class=' row text-right'>  
                 <strong>
                     <span t-field="doc.user_id"/>
                 </strong>
             </div>
         </xpath>
+        <!-- Ajout de champ objet dans devis-->
         <xpath expr="//div[hasclass('page')]/div[hasclass('row', 'mt32', 'mb32')]" position="after">
             <div>
               <strong>Objet:</strong>
                  <span t-field="doc.purchase_order_subject"/>
             </div>
         </xpath>
+        <!--Ajout de champ destinataire dans devis-->
+        <xpath expr="//div[hasclass('page')]/div[hasclass('row', 'mt32', 'mb32')]/div[@t-if='doc.payment_term_id']" position="after">
+            <div t-if="doc.sale_order_recipient" class="col-xs-3">
+              <strong>Destinataire:</strong>
+              <span t-field="doc.sale_order_recipient"/>
+            </div>
+        </xpath>
+        <!-- Ajut de colonne unite dans rapport devis-->
+        <xpath expr="//table[hasclass('table', 'table-condensed')]/thead/tr/th[2]" position="after">
+            <th class="text-right">Unite</th>
+        </xpath>
+        
+        <xpath expr="//table[hasclass('table', 'table-condensed')]/tbody/t/t/tr/td[2]" position="after">
+            <td class="text-right">
+                <span t-field="l.product_uom"/>
+            </td>
+        </xpath>
+        
+        <!--
+        <xpath expr="//div[hasclass('page')]/div[hasclass('row', 'mt32', 'mb32')]/div[@t-if='doc.payment_term_id']" position="replace">
+            <div class="row mt32 mb32" id="informations">
+                <div t-if="doc.client_order_ref" class="col-xs-3">
+                    <strong>Your Reference:</strong>
+                   <p t-field="doc.client_order_ref"/>
+                </div>
+                <div t-if="doc.confirmation_date and doc.state not in ['draft','sent']" class="col-xs-3">
+                  <strong>Date Ordered:</strong>
+                  <p t-field="doc.confirmation_date"/>
+                </div>
+                <div t-if="doc.date_order and doc.state in ['draft','sent']" class="col-xs-3">
+                   <strong>Quotation Date:</strong>
+                   <p t-field="doc.date_order"/>
+                </div>
+                <div name="payment_term" t-if="doc.payment_term_id" class="col-xs-3">
+                    <strong>Payment Terms:</strong>
+                    <p t-field="doc.payment_term_id"/>
+                </div>
+                <div t-if="doc.validity_date and doc.state in ['draft', 'sent']" class="col-xs-3">
+                    <strong>Date de Expiration:</strong>
+                    <p t-field="doc.validity_date"/>
+                </div>
+            </div>
+        </xpath>
+        -->
     </template>
 </odoo>
